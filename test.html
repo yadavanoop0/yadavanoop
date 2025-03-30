@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Surveillance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+        }
+        .left-section {
+            width: 50%;
+            background-color: #F9F4F1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logo p {
+            font-size: 14px;
+            color: #A52A2A;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .image-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 75%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .image-container img {
+            width: 100%;
+            display: block;
+        }
+        .right-section {
+            width: 50%;
+            background-color: #1F3B38;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .form-container {
+            width: 75%;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            background: #2E524D;
+            margin: 0 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .tab-active {
+            background: #4A7A72;
+        }
+        .form {
+            display: none;
+        }
+        .form-active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid gray;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        .login-btn {
+            width: 100%;
+            background: white;
+            color: black;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .links {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-section">
+        <div class="logo">
+        </div>
+        <div class="image-container">
+            <img src="image.png" alt="Smart Home">
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="form-container">
+            <div class="tab-container">
+                <span class="tab tab-active" onclick="showForm('login')">Login</span>
+                <span class="tab" onclick="showForm('register')">Register</span>
+            </div>
+            <div id="login" class="form form-active">
+                <h2>Login</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">EMAIL/PHONE</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">PASSWORD</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button class="login-btn" type="submit">LOGIN</button>
+                </form>
+            </div>
+            <div id="register" class="form">
+                <h2>Register</h2>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="register-email">EMAIL</label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">PASSWORD</label>
+                        <input type="password" id="register-password" name="password" required>
+                    </div>
+                    <button class="login-btn" type="submit">REGISTER</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showForm(formId) {
+            document.getElementById('login').classList.remove('form-active');
+            document.getElementById('register').classList.remove('form-active');
+            document.getElementById(formId).classList.add('form-active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('tab-active'));
+            document.querySelector(`[onclick="showForm('${formId}')"]`).classList.add('tab-active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            window.location.href = 'home.html';
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            alert('Registration logic not implemented.');
+        }
+    </script>
+</body>
+</html>
+
